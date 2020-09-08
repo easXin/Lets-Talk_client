@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 import {redirectUPage} from '../utils';
 import {
   AUTH_SUCCESS,
-  ERROR_MSG
+  ERROR_MSG,RECEIVE_USER,RESET_USER
 } from './action-types'
 //                new state, assign action
 const initUser = {
@@ -22,6 +22,10 @@ function user(state=initUser, action){
       return {...action.data, redirectTo: redirectTouserHomepage};
     case ERROR_MSG:
       return {...state, msg: action.data};
+    case RECEIVE_USER: // 接收用户
+      return action.data
+    case RESET_USER: // 重置用户
+      return {...initUser, msg:action.data};
     default:
       return state
   }

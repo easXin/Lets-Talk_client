@@ -1,8 +1,10 @@
-import { AUTH_SUCCESS, ERROR_MSG } from './action-types';
-import { reqRegister, reqLogin } from '../api';
+import { AUTH_SUCCESS, ERROR_MSG, RECEIVE_USER,RESET_USER } from './action-types';
+import { reqRegister, reqLogin,reqSyncUser } from '../api';
 
 const errorMsg = (msg) => ({type:ERROR_MSG, data: msg});
 const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user});
+const receiveUser = (user) => ({type: RECEIVE_USER, data: user});
+const resetUser = (msg) => ({type: RESET_USER, data: msg});
 export const register = ({username, password, password2, type}) => {
   if (!username || !password || !type) {
     return errorMsg('Please fill out all the required field');
@@ -30,4 +32,11 @@ export const login = ({username, password}) => {
   }
 }
 
-export const syncUserInfo = () =>{}
+export const syncUserInfo = (user) => {
+// console.log(user);
+    return async dispatch => {
+      const result = (await reqSyncUser(user)).data;
+      result.code === 0? dispatch(receiveUser(result.data)) : dispatch(resetUser(result.msg));
+    }
+
+}

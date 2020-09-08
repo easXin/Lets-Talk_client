@@ -12,10 +12,10 @@ export default class Avatar extends Component {
   // state
   constructor(props) {
     super(props)
-    this.headerList = []
+    this.avatars = []
     for (let i = 0; i < 20; i++) {
       const text = `img${i+1}`
-      this.headerList.push({text, icon: require(`../../assets/imgs/${text}.jpg`)})
+      this.avatars.push({text, icon: require(`../../assets/imgs/${text}.jpg`)})
     }
   }
   selectAvatar= ({icon, text}) => {
@@ -28,7 +28,7 @@ export default class Avatar extends Component {
     return (
         // https://mobile.ant.design/components/grid
         <List renderHeader={() => renderHeader}>
-          <Grid data={this.headerList} columnNum={5} onClick={this.selectAvatar}/>
+          <Grid data={this.avatars} columnNum={5} onClick={this.selectAvatar}/>
         </List>
     )
   }

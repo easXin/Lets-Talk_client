@@ -24,7 +24,7 @@ class Recruiter extends Component{
   //   console.log(this.state);
   // }
   render(){
-    // if user already has a profile img setup, that means he is not a new user anymore
+    //if user already has a profile img setup, that means he is not a new user anymore
     const {user} = this.props;
     if(user.avatar){
       return <Redirect to='/recruiter'/>
@@ -44,8 +44,6 @@ class Recruiter extends Component{
                         onChange={val => this.handleChange('careerRequirement',val)}/>
           </WingBlank>
           <WhiteSpace/>
-          {/* define syncUserInfo in action js*/}
-          {/*<Button type="primary" onClick={this.test}>Save</Button>*/}
           <Button type="primary" onClick={() => this.props.syncUserInfo(this.state)}>Save</Button>
         </div>
     )
