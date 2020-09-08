@@ -1,5 +1,6 @@
 /* reducer func : returns a new state based on the old state and assigned action */
 import {combineReducers} from 'redux';
+import {redirectUPage} from '../utils';
 import {
   AUTH_SUCCESS,
   ERROR_MSG
@@ -14,7 +15,11 @@ const initUser = {
 function user(state=initUser, action){
   switch(action.type){
     case AUTH_SUCCESS:
-      return {...action.data, redirectTo: '/'};
+      const redirectTouserHomepage = redirectUPage(action.data.type, action.data.avatar);
+      //return {...action.data, redirectTo: '/'};
+        //console.log(redirectTouserHomepage);
+        //let url = `http://localhost:3000/#/${redirectTouserHomepage}`
+      return {...action.data, redirectTo: redirectTouserHomepage};
     case ERROR_MSG:
       return {...state, msg: action.data};
     default:

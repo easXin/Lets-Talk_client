@@ -29,3 +29,5 @@ export const login = ({username, password}) => {
     result.code === 0 ? dispatch(authSuccess(result.data)) : dispatch(errorMsg(result.msg));
   }
 }
+
+export const syncUserInfo = () =>{}
