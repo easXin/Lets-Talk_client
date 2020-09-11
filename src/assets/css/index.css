@@ -1,0 +1,10 @@
+.error-msg{
+  color:red;
+  text-align:center;
+  font-size:18px;
+}
+.am-tabs-tab-bar-wrap{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
