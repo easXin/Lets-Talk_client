@@ -19,7 +19,7 @@ class Main extends Component {
       component: RecruiterM,
       title: 'Recruiter List',
       icon: 're',
-      text: 'Recruiter',
+      text: 'Contacts',
       hide:false
     },
     {
@@ -27,7 +27,7 @@ class Main extends Component {
       component: CandidateM,
       title: 'Candidate List',
       icon: 'ca',
-      text: 'Candidate',
+      text: 'Contacts',
       hide:false
     },
     {
@@ -35,23 +35,23 @@ class Main extends Component {
       component: Message,
       title: 'Message',
       icon: 'message',
-      text: 'Message',
+      text: 'Chats',
     },
     {
       path: '/personal',
       component: Personal,
       title: 'Personal Info',
       icon: 'personal',
-      text: 'Personal',
+      text: 'Me',
     }
   ]
   // if backend cookie is not exist then push user to login page
   render() {
     const cookies = Cookies.get('userid')
     const {user} = this.props
-    // if (!cookies||!user._id) {
-    //   return <Redirect to='/login'/>
-    // }
+    if (!cookies||!user._id) {
+      return <Redirect to='/login'/>
+    }
     const {navList} = this;
     // compare with every path element in navList
     const path = this.props.location.pathname
@@ -63,7 +63,7 @@ class Main extends Component {
           {currentNav ? <NavBar>{currentNav.title}</NavBar>:null}
           <Switch>
             {
-              navList.map(nav=> <Route path={nav.path} component={nav.component}/>)
+              navList.map(nav=> <Route key={nav.path} path={nav.path} component={nav.component}/>)
             }
             <Route path='/recruiter-page' component={Recruiter}/>
             <Route path='/candidate-page' component={Candidate}/>

@@ -5,7 +5,6 @@ import {withRouter} from 'react-router-dom';
 class NavFooter extends React.Component {
   static propTypes = {
     navList: PropTypes.array.isRequired,
-    unReadCount: PropTypes.number.isRequired
   }
   render() {
 // nav.hide = true/false hide 代表当前项应该被隐藏
